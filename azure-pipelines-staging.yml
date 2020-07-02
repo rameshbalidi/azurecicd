@@ -28,13 +28,15 @@ steps:
       git config --get remote.origin.url
       
       git remote show origin
+      basename $(git remote show -n origin | grep Fetch | cut -d: -f2-)
+      basename $(git remote show -n origin | grep Push | cut -d: -f2-)
 
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
-    remoteName: 'dev'
+    remoteName: 'origin'
 
 - task: SSH@0
   inputs:
