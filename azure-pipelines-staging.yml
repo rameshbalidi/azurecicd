@@ -24,14 +24,17 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'git config --get remote.origin.url'
+    script: |
+      git config --get remote.origin.url
+      
+      git remote show origin
 
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
-    targetBranch: 'origin/qa'
+    targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
-    remoteName: 'origin'
+    remoteName: 'dev'
 
 - task: SSH@0
   inputs:
