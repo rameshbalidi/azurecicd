@@ -41,10 +41,11 @@ steps:
 
 - task: gitMerge@0
   inputs:
-    mergeType: 'test'
-    branchesToTest: 'qa'
+    mergeType: 'merge'
+    targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
     remoteName: 'origin'
+
 - task: SSH@0
   inputs:
     sshEndpoint: 'ssh-stage'
