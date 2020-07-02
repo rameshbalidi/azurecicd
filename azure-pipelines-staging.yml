@@ -30,6 +30,7 @@ steps:
       git remote show origin
       basename $(git remote show -n origin | grep Fetch | cut -d: -f2-)
       basename $(git remote show -n origin | grep Push | cut -d: -f2-)
+      git fetch --all
 
 - task: gitMerge@0
   inputs:
