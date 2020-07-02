@@ -22,13 +22,16 @@ steps:
 #  inputs:
 #    script: 'git push -u origin --all'
 
+- task: CmdLine@2
+  inputs:
+    script: 'git config --get remote.origin.url'
 
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd.git'
-    remoteName: 'https://github.com/rameshbalidi/azurecicd.git'
+    remoteName: 'origin'
 
 - task: SSH@0
   inputs:
