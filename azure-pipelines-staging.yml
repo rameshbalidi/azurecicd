@@ -20,14 +20,14 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'git remote add origin https://github.com/rameshbalidi/azurecicd.git'
+    script: 'git push -u origin --all'
 
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd.git'
-    remoteName: 'dev'
+    remoteName: 'origin'
 
 - task: SSH@0
   inputs:
