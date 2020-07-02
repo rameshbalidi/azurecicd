@@ -28,7 +28,7 @@ steps:
     mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd.git'
-    remoteName: 'origin'
+    remoteName: 'dev'
 
 - task: SSH@0
   inputs:
