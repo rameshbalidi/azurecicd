@@ -18,6 +18,12 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      brew untap dev
+      brew untap qa
+      brew untap master
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
