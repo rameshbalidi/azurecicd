@@ -48,8 +48,6 @@ steps:
       git checkout qa
       
       git merge dev
-      
-      git push -u origin qa
 
 - task: SSH@0
   inputs:
