@@ -32,13 +32,19 @@ steps:
       basename $(git remote show -n origin | grep Push | cut -d: -f2-)
       git fetch --all
 
+#- task: gitMerge@0
+#  inputs:
+#    mergeType: 'merge'
+#    targetBranch: 'qa'
+#    repoUrl: 'https://github.com/rameshbalidi/azurecicd'
+#    remoteName: 'origin'
+
 - task: gitMerge@0
   inputs:
-    mergeType: 'merge'
-    targetBranch: 'qa'
+    mergeType: 'test'
+    branchesToTest: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
     remoteName: 'origin'
-
 - task: SSH@0
   inputs:
     sshEndpoint: 'ssh-stage'
