@@ -43,11 +43,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      git pull
-      
       git checkout qa
-      
-      git merge dev
+      git pull dev
 
 - task: SSH@0
   inputs:
