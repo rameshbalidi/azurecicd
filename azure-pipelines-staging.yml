@@ -40,11 +40,12 @@ steps:
 #    repoUrl: 'https://github.com/rameshbalidi/azurecicd'
 #    remoteName: 'origin'
 
-- task: CmdLine@2
+- task: gitMerge@0
   inputs:
-    script: |
-      git checkout qa
-      git pull dev
+    mergeType: 'merge'
+    targetBranch: 'qa'
+    repoUrl: 'https://github.com/rameshbalidi/azurecicd'
+    remoteName: 'origin/dev'
 
 - task: SSH@0
   inputs:
