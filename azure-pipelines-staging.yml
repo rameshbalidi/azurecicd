@@ -18,16 +18,17 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: CmdLine@2
-  inputs:
-    script: 'git push -u origin --all'
+#- task: CmdLine@2
+#  inputs:
+#    script: 'git push -u origin --all'
+
 
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd.git'
-    remoteName: 'origin'
+    remoteName: 'https://github.com/rameshbalidi/azurecicd.git'
 
 - task: SSH@0
   inputs:
