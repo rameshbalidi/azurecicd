@@ -41,10 +41,10 @@ steps:
 
 - task: gitMerge@0
   inputs:
-    mergeType: 'dev'
+    mergeType: 'merge'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
-    remoteName: 'origin'
+    remoteName: 'dev'
 
 - task: SSH@0
   inputs:
