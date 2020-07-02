@@ -25,13 +25,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      git config --get remote.origin.url
-      
-      git remote show origin
-      basename $(git remote show -n origin | grep Fetch | cut -d: -f2-)
-      basename $(git remote show -n origin | grep Push | cut -d: -f2-)
-      git fetch --all
-      git branch
+      git remote add origin https://github.com/rameshbalidi/azurecicd.git
 
 #- task: gitMerge@0
 #  inputs:
