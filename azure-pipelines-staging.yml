@@ -31,6 +31,7 @@ steps:
       basename $(git remote show -n origin | grep Fetch | cut -d: -f2-)
       basename $(git remote show -n origin | grep Push | cut -d: -f2-)
       git fetch --all
+      git branch
 
 #- task: gitMerge@0
 #  inputs:
@@ -42,13 +43,13 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      git pull dev
+      git pull
       
       git checkout qa
       
       git merge dev
       
-      git push qa
+      git push -u origin qa
 
 - task: SSH@0
   inputs:
