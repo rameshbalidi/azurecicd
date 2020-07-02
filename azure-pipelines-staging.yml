@@ -29,7 +29,7 @@ steps:
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
-    targetBranch: 'qa'
+    targetBranch: 'origin/qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
     remoteName: 'origin'
 
