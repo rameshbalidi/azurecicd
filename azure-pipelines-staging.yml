@@ -41,7 +41,7 @@ steps:
 
 - task: gitMerge@0
   inputs:
-    mergeType: 'merge'
+    mergeType: 'dev'
     targetBranch: 'qa'
     repoUrl: 'https://github.com/rameshbalidi/azurecicd'
     remoteName: 'origin'
