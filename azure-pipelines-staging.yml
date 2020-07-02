@@ -21,9 +21,8 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      brew untap dev
-      brew untap qa
-      brew untap master
+      brew untap
+
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
