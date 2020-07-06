@@ -18,6 +18,13 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      git checkout qa
+      
+      git merge dev
+
 - task: SSH@0
   inputs:
     sshEndpoint: 'ssh-stage'
@@ -46,12 +53,3 @@ steps:
     runOptions: 'commands'
     commands: 'sudo chmod -R 755 /var/www/html/'
     readyTimeout: '20000'
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      git branch
-      
-      git checkout qa
-      
-      git merge dev
