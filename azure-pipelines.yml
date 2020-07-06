@@ -23,7 +23,7 @@ steps:
     script: |
       git checkout qa
       
-      git merge dev
+      git merge origin/dev
 
 - task: SSH@0
   inputs:
