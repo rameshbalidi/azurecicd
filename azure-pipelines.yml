@@ -22,8 +22,8 @@ steps:
   inputs:
     script: |
       git checkout qa
-      
-      git merge origin/dev
+      git pull origin dev
+#      git merge origin/dev
 
 - task: SSH@0
   inputs:
