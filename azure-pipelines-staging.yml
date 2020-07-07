@@ -18,9 +18,7 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- task: CmdLine@2
-  inputs:
-    script: 'export GIT_TERMINAL_PROMPT=1" >> ~/.bashrc || ~/.zshrc'
+
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
