@@ -18,11 +18,11 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-
-- task: gitMerge@0
+- task: shellexec@0
   inputs:
-    mergeType: 'merge'
-    targetBranch: 'qa'
-    repoUrl: 'https://rameshbalidi:$(gitpwd)@github.com/azurecicd'
-    remoteName: 'origin'
-
+    code: |
+      git checkout qa
+      
+      git merge dev
+      
+      git push https://rameshbalidi:$(gitpwd)@github.com/rameshbalidi/azurecicd.git
