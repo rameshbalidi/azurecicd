@@ -22,6 +22,6 @@ steps:
   inputs:
     mergeType: 'merge'
     targetBranch: 'qa'
-    repoUrl: 'https://github.com/rameshbalidi/azurecicd'
+    repoUrl: 'https://rameshbalidi:$(gitpwd)@github.com/azurecicd'
     remoteName: 'origin'
 
