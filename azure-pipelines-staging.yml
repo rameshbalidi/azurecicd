@@ -62,13 +62,13 @@ steps:
     commands: |
       mysqldump -h $(dbhost) -u $(dbusername) -p$(dbpassword) $(dbname) |gzip > /home/ec2-user/dbbackup$(date +%Y_%m_%d__%H_%M_%S$%M%S).sql.gz
       
-      mysqladmin -h $(dbhost) -u $(dbusername) -p$(dbpassword) -f drop database rameshdb
+      mysqladmin -u $(dbusername) -p$(dbpassword) -f drop database rameshdb
       
-      mysqladmin -h $(dbhost) -u $(dbusername) -p$(dbpassword) create database rameshdb
+      mysqladmin -u $(dbusername) -p$(dbpassword) create database rameshdb
       
-      mysqladmin -h $(dbhost) -u $(dbusername) -p$(dbpassword) grant all on rameshdb.* to 'ramesh'@'localhost'
+      mysqladmin -u $(dbusername) -p$(dbpassword) grant all on rameshdb.* to 'ramesh'@'localhost'
       
-      mysqladmin -h $(dbhost) -u $(dbusername) -p$(dbpassword) $(dbname) < /var/www/html/db/database.sql
+      mysqladmin -u $(dbusername) -p$(dbpassword) $(dbname) < /var/www/html/db/database.sql
     readyTimeout: '20000'
 
 #revoking file permissions as usual
