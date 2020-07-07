@@ -25,4 +25,4 @@ steps:
       
       git merge dev
       
-      git push https://$(gitusername):$(gitpassword)@github.com/rameshbalidi/azurecicd
+      git push https://$(gitusername):@github.com/rameshbalidi/azurecicd
