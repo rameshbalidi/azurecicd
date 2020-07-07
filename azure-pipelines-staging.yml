@@ -22,7 +22,7 @@ steps:
   inputs:
     code: |
       git checkout qa
-      git pull https://rameshbalidi:Anjurams%40143@github.com/rameshbalidi/azurecicd dev
+      git pull https://$(gitusername):$(gitpassword)@github.com/rameshbalidi/azurecicd dev
       git merge dev
       
-      git push https://rameshbalidi:Anjurams%40143@github.com/rameshbalidi/azurecicd qa
+      git push https://$(gitusername):$(gitpassword)@github.com/rameshbalidi/azurecicd qa
