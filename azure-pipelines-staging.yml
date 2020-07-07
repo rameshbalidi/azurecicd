@@ -20,7 +20,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'env GIT_TERMINAL_PROMPT=1 go get github.com/rameshbalidi/azurecicd'
+    script: 'export GIT_TERMINAL_PROMPT=1" >> ~/.bashrc || ~/.zshrc'
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
