@@ -21,7 +21,11 @@ steps:
 - task: shellexec@0
   inputs:
     code: |
+      git pull dev
+
       git checkout qa
+      
+      git pull
       
       git merge dev
       
