@@ -25,4 +25,4 @@ steps:
       
       git merge dev
       
-      git push https://rameshbalidi:$(gitpassword)@github.com/rameshbalidi/azurecicd
+      git push https://rameshbalidi:$(gitpassword)@github.com/rameshbalidi/azurecicd qa
