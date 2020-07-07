@@ -21,11 +21,9 @@ steps:
 - task: shellexec@0
   inputs:
     code: |
-      git pull dev
+      git pull https://rameshbalidi:Anjurams%40143@github.com/rameshbalidi/azurecicd dev
 
       git checkout qa
-      
-      git pull
       
       git merge dev
       
