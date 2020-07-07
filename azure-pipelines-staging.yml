@@ -62,11 +62,11 @@ steps:
     commands: |
       mysqldump -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" $(dbname) |gzip > /home/ec2-user/dbbackup$(date +%Y_%m_%d__%H_%M_%S$%M%S).sql.gz
       
-      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "drop database $(dbname);"
+      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "drop database rameshdb;";
       
-      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "create database $(dbname);"
+      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "create database rameshdb;";
       
-      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "grant all on $(dbname).* to '$(dbusername)'@'localhost';"
+      mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" -e "grant all on rameshdb.* to 'ramesh'@'localhost';"
       
       mysql -h $(dbhost) -u $(dbusername) -p"$(dbpassword)" $(dbname) < /var/www/html/db/database.sql
     readyTimeout: '20000'
