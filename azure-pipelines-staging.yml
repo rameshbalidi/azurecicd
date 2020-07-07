@@ -18,6 +18,9 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+- task: CmdLine@2
+  inputs:
+    script: 'env GIT_TERMINAL_PROMPT=1 go get github.com/rameshbalidi/azurecicd'
 - task: gitMerge@0
   inputs:
     mergeType: 'merge'
