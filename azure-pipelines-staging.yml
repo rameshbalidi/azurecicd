@@ -34,7 +34,7 @@ steps:
     commands: |
       mysqldump -h $(dbhost) -u $(dbusername) -p$(dbpassword) $(dbname) |gzip > /home/ec2-user/dbbackup$(date +%Y_%m_%d__%H_%M_%S$%M%S).sql.gz
       
-      mysqladmin -u $(dbusername) -p$(dbpassword) drop database $(dbname)
+      mysql -u $(dbusername) drop database $(dbname)
       
       mysql -u $(dbusername) -p$(dbpassword)  -e "create database rameshdb;";
       
