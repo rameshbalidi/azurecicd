@@ -27,20 +27,6 @@ steps:
       
       git push https://$(gitusername):$(gitpassword)@github.com/rameshbalidi/azurecicd qa
 
-- task: SSH@0
-  inputs:
-    sshEndpoint: 'ssh-stage'
-    runOptions: 'commands'
-    commands: |
-      mysqldump -h $(dbhost) -u $(dbusername) -p$(dbpassword) $(dbname) |gzip > /home/ec2-user/dbbackup$(date +%Y_%m_%d__%H_%M_%S$%M%S).sql.gz
-      
-      mysql -u root -e "drop database rameshdb;";
-      
-      mysql -u root -e "create database rameshdb;";
-      grant all on rameshdb.* to 'ramesh'@'localhost';
-      
-      mysql -u $(dbusername) -p$(dbpassword) $(dbname) < /var/www/html/db/database.sql;
-    readyTimeout: '20000'
 
 # changing permissions to execute SSH task
 - task: SSH@0
@@ -62,12 +48,12 @@ steps:
 
 
 #updating database
-#- task: SSH@0
-#  inputs:
-#    sshEndpoint: 'ssh-stage'
-#    runOptions: 'commands'
-#    commands: 'sudo bash /home/ec2-user/database.sh'
-#    readyTimeout: '20000'
+- task: SSH@0
+  inputs:
+    sshEndpoint: 'ssh-stage'
+    runOptions: 'commands'
+    commands: 'sudo bash /home/ec2-user/database.sh'
+    readyTimeout: '20000'
 
 
 #revoking file permissions as usual
