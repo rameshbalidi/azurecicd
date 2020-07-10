@@ -32,6 +32,7 @@ CREATE TABLE `users` (
   `UserId` int(11) NOT NULL,
   `FullName` varchar(50) NOT NULL,
   `EmailId` varchar(50) NOT NULL,
+  'Country' varchar(20) NOT NULL,
   `Phone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,11 +40,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserId`, `FullName`, `EmailId`, `Phone`) VALUES
-(1, 'Vamsi Krishna', 'vamsy@yopmail.com', '9876543210');
+INSERT INTO `users` (`UserId`, `FullName`, `EmailId`, 'Country', `Phone`) VALUES
+(1, 'Vamsi Krishna', 'vamsy@yopmail.com', 'India', '9876543210');
 
-INSERT INTO `users` (`UserId`, `FullName`, `EmailId`, `Phone`) VALUES
-(2, 'ramesh balidi', 'balidi@yopmail.com', '9876543210');
+INSERT INTO `users` (`UserId`, `FullName`, `EmailId`, 'Country', `Phone`) VALUES
+(2, 'ramesh balidi', 'balidi@yopmail.com', 'Canada', '9876543210');
 --
 -- Indexes for dumped tables
 --

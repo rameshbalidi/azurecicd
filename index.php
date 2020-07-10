@@ -34,6 +34,7 @@
 					<td>User ID</td>
 					<td>Full Name</td>
 					<td>Email</td>
+					<td>Country</td>
 					<td>Phone</td>
 				</tr>
 			</thead>
@@ -43,6 +44,7 @@
 					<td><?php echo $row['UserId'];?></td>
 					<td><?php echo $row['FullName'];?></td>
 					<td><?php echo $row['EmailId'];?></td>
+					<td><?php echo $row['Country'];?></td>
 					<td><?php echo $row['Phone'];?></td>
 				</tr>
 				<?php } 
