@@ -7,7 +7,13 @@ class VDatabase {
 	
 	function VDatabase($openPrimaryDB = false) {
 		if ($openPrimaryDB) {
-			$this->openConnection(DB_HOST, DB_USER, DB_PWD, DB_NAME);
+			return $this->openConnection(DB_HOST, DB_USER, DB_PWD, DB_NAME);
+		}
+	}
+	
+	function __construct($openPrimaryDB = false) {
+		if ($openPrimaryDB) {
+			return $this->openConnection(DB_HOST, DB_USER, DB_PWD, DB_NAME);
 		}
 	}
 	
@@ -17,79 +23,95 @@ class VDatabase {
 	}
 	
 	function openConnection($hostName, $userName, $pwd, $dbName) {
-		$this->dbLink = mysql_connect($hostName, $userName, $pwd) or die($_SESSION['errMsg'] = "Could not Connect to the DATABASE"); 
-		mysql_select_db($dbName, $this->dbLink) or die($_SESSION['errMsg']="Could not select the DATABASE");
+		//$this->dbLink = mysqli_connect($hostName, $userName, $pwd) or die($_SESSION['errMsg'] = "Could not Connect to the DATABASE"); 
+		//mysqli_select_db($dbName, $this->dbLink) or die($_SESSION['errMsg']="Could not select the DATABASE");
+		
+		// Create connection
+		$this->dbLink = mysqli_connect($hostName, $userName, $pwd, $dbName);
+		
+		// Check connection
+		if (!$this->dbLink) {
+		    die("Connection failed: " . mysqli_connect_error());
+		}
+		
+		
 	}
 	
 	
 	function closeConnection() {
 		if ($this->dbLink != null) {		
-			mysql_close($this->dbLink);
+			mysqli_close($this->dbLink);
 		}
 	}
 	
 	
 	function begin() {
 		if ($this->dbLink != null) {
-			mysql_query('BEGIN');
+			//mysqli_query('BEGIN');
+			mysqli_begin_transaction($link, MYSQLI_TRANS_START_READ_ONLY);
 		}
 	}
 	
 	
 	function commit() {
 		if ($this->dbLink != null) {
-			mysql_query('COMMIT');
+			//mysqli_query('COMMIT');
+			mysqli_commit($this->dbLink);
 		}
 	}
 	
 	
 	function rollback() {
 		if ($this->dbLink != null) {
-			mysql_query('ROLLBACK');
+			//mysqli_query('ROLLBACK');
+			mysqli_rollback($this->dbLink);
 		}
 	}
 	
+	function escapeString($string) {
+		return mysqli_real_escape_string($this->dbLink, $string);
+	}
 	
 	function insertRow($sql) {
-			mysql_query($sql, $this->dbLink) or die('Insert Query Error: '.mysql_error());
+			mysqli_query($this->dbLink, $sql) or die('Insert Query Error: '.mysql_error());
 	}
 	
 	
 	function updateRow($sql) {
-		mysql_query($sql, $this->dbLink) or die('Update Query Error: '.mysql_error());
-		return mysql_affected_rows();
+		mysqli_query($this->dbLink, $sql) or die('Update Query Error: '.mysql_error());
+		return mysqli_affected_rows($this->dbLink);
 	}
 	
 	
 	function deleteRow($sql) {
-		mysql_query($sql, $this->dbLink) or die('Delete Query Error: '.mysql_error());
-		return mysql_affected_rows();
+		mysqli_query($this->dbLink, $sql) or die('Delete Query Error: '.mysql_error());
+		return mysqli_affected_rows($this->dbLink);
 	}
 	
 	function noOfRows($sql) {
-		$rs = mysql_query($sql, $this->dbLink) or die('Query Error: '.mysql_error());
-		return mysql_num_rows($rs);
+		$rs = mysqli_query($this->dbLink, $sql) or die('Query Error: '.mysql_error());
+		return mysqli_num_rows($rs);
 	}
 	
 	
 	function getAutoID() {
 		$id = -1;
-		$rs = mysql_query("SELECT LAST_INSERT_ID()");
-		if (mysql_num_rows($rs) == 1) {
-			list($id) = mysql_fetch_array($rs);
+		$rs = mysqli_query("SELECT LAST_INSERT_ID()");
+		if (mysqli_num_rows($rs) == 1) {
+			list($id) = mysqli_fetch_array($rs);
 		}
-		mysql_free_result($rs);
+		mysqli_free_result($rs);
 		return $id;
 	}
 	
 	
 	function getRow($query) {
 		$row = null;
-		$rs = mysql_query($query, $this->dbLink) or die('Query Error: '.mysql_error());
-		if (mysql_num_rows($rs) != 0) {
-			$row = mysql_fetch_array($rs, MYSQL_BOTH);
+		$rs = mysqli_query($this->dbLink, $query) or die('Query Error: '.mysql_error());
+		if (mysqli_num_rows($rs) != 0) {
+			$row = mysqli_fetch_array($rs, MYSQLI_BOTH);
 		}
-		mysql_free_result($rs);
+		mysqli_free_result($rs);
 		return $row;
 	}
 		
@@ -102,12 +124,12 @@ class VDatabase {
 		fclose($dat);*/
 		
 		$retVal = array();
-		$resultSet = mysql_query($query);
+		$resultSet = mysqli_query($this->dbLink, $query);
 		if($resultSet == true) {
-			while($row = mysql_fetch_array($resultSet, MYSQL_BOTH)) {
+			while($row = mysqli_fetch_array($resultSet, MYSQLI_BOTH)) {
 				$retVal[] = $row;
 			}
-			mysql_free_result($resultSet);
+			mysqli_free_result($resultSet);
 		}
 		return $retVal;
 	}
