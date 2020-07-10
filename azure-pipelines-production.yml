@@ -22,6 +22,8 @@ steps:
 - task: shellexec@0
   inputs:
     code: |
+      git config --global user.email "$(gitmailid)"
+      git config --global user.name "$(gitusername)"
       git checkout master
       
       git pull https://$(gitusername):$(gitpassword)@github.com/rameshbalidi/azurecicd qa
