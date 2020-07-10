@@ -33,7 +33,7 @@
 				<tr>
 					<td>User ID</td>
 					<td>Full Name</td>
-					<td>Email Id</td>
+					<td>Email</td>
 					<td>Phone</td>
 				</tr>
 			</thead>
